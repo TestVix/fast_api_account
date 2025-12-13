@@ -12,7 +12,7 @@ from routers.auth import create_access_token
 import base64
 # import hashlib
 import binascii
-from fast_api_account.domain_database import domains, to_domains, http, index_number
+from domain_database import domains, to_domains, http, index_number
 # import 
 
 def verify_django_password(raw_password: str, hashed_password: str) -> bool:

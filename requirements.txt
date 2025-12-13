@@ -6,3 +6,4 @@ psycopg2-binary  # agar PostgreSQL ishlatayotgan bo‘lsangiz
 python-jose[cryptography]  # JWT uchun
 passlib[bcrypt]            # password hashing uchun
 requests                   # agar Django API bilan bog‘lanayotgan bo‘lsangiz
+pydantic
