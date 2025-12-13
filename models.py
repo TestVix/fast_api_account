@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
-from database import Base
+# from database import Base
+from .database import Base
 
 class AuthUser(Base):
     __tablename__ = "myapp_authuser"   # Django jadvali

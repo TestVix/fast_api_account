@@ -2,17 +2,21 @@ import datetime
 import os
 from fastapi import FastAPI, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models import AuthUser
-from schemas import UserRegister, UserLogin
+from .database import SessionLocal
+
+# from models import AuthUser
+from .models import AuthUser
+# from schemas import UserRegister, UserLogin
+from .schemas import UserRegister, UserLogin
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 import hashlib
-from routers.auth import create_access_token
+from .routers.auth import create_access_token
 import base64
 # import hashlib
 import binascii
-from domain_database import domains, to_domains, http, index_number
+# from domain_database import domains, to_domains, http, index_number
+from .domain_database import domains, to_domains, http, index_number
 # import 
 
 def verify_django_password(raw_password: str, hashed_password: str) -> bool:
@@ -55,7 +59,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
     if not db_user or not verify_django_password(user.password, db_user.password):
         return  {"message": "Username yoki parol noto'g'ri"}
-    access_token = create_access_token(data={"sub": db_user.username})
+    access_token = create_access_token(data={"sub": db_user.username, 'user_id': db_user.id})
     # response = Response()
     response = JSONResponse(content={"message": "Login successful", 'redirect': "/"})
     response.set_cookie(
@@ -133,7 +137,7 @@ def register(user: UserRegister, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    access_token = create_access_token(data={"sub": new_user.username})
+    access_token = create_access_token(data={"sub": new_user.username, 'user_id': new_user.id})
     response = JSONResponse(content={"message": "Muvaffaqiyatli ro'yxatdan o'tdingiz", 'redirect': "/"})
     response.set_cookie(
         key="access_token",
