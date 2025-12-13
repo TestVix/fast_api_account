@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+python-jose[cryptography]
+PyJWT
+passlib[bcrypt]
+requests    # Django API bilan so‘rov yuborish uchun
