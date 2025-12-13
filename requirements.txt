@@ -1,6 +1,8 @@
 fastapi
 uvicorn
-python-jose[cryptography]
-PyJWT
-passlib[bcrypt]
-requests    # Django API bilan so‘rov yuborish uchun
+sqlalchemy
+databases      # agar async ishlatayotgan bo‘lsangiz
+psycopg2-binary  # agar PostgreSQL ishlatayotgan bo‘lsangiz
+python-jose[cryptography]  # JWT uchun
+passlib[bcrypt]            # password hashing uchun
+requests                   # agar Django API bilan bog‘lanayotgan bo‘lsangiz
