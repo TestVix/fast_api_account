@@ -2,13 +2,13 @@ import datetime
 import os
 from fastapi import FastAPI, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
-from .database import SessionLocal
-from .models import AuthUser
-from .schemas import UserRegister, UserLogin
+from database import SessionLocal
+from models import AuthUser
+from schemas import UserRegister, UserLogin
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 import hashlib
-from .routers.auth import create_access_token
+from routers.auth import create_access_token
 import base64
 # import hashlib
 import binascii
