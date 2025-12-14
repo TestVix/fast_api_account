@@ -51,10 +51,18 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/logout/")
+def logout():
+    print('logout keldi', flush=True)
+    response = JSONResponse(content={"message": "Logout successful", 'redirect': "/"})
+    response.delete_cookie(key="access_token")
+    return response
+
 @app.post("/login/")
 def login(user: UserLogin, db: Session = Depends(get_db)):
-    print('login keldi', flush=True)
-    print(user, flush=True)
+    # print('login keldi', flush=True)
+    # print(user, flush=True)
     db_user = db.query(AuthUser).filter(AuthUser.username == user.username).first()
 
     if not db_user or not verify_django_password(user.password, db_user.password):
